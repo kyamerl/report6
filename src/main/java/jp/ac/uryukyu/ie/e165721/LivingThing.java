@@ -48,6 +48,13 @@ public class LivingThing {
             opponent.wounded(damage);
         }
     }
+    public int getAttack(){
+        return attack;
+    }
+
+    public void setAttack(int attack){
+        this.attack = attack;
+    }
 
     /**
      * 自身へ攻撃されたときのダメージ処理をするメソッド。
