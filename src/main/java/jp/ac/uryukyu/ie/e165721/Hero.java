@@ -28,22 +28,18 @@ public class Hero extends LivingThing{
     public void attack(LivingThing opponent){
         if(getDead() == false) {
             int damage = (int) (Math.random() * getAttack());
-            int val = (int)(Math.random() * 10) + 1; //1~10
-            if(val <= 3){
-                int wdamage = damage * 2;
-                if (wdamage == 0) {
-                    System.out.printf("%sの攻撃！,,,だが、%sは攻撃を回避した！\n", getName(), opponent.getName());
-                }else {
-                    System.out.printf("%sの攻撃！会心の一撃！！%sに%dのダメージを与えた！！\n", getName(), opponent.getName(), wdamage);
-                }
-                opponent.wounded(wdamage);
+            int val = (int)(Math.random() * 10) + 1; //1~10で確率を表現し攻撃を倍にするかどうか
+            if(damage == 0){//攻撃が当たらない、回避
+                System.out.printf("%sの攻撃！,,,だが、%sは攻撃を回避した！\n", getName(), opponent.getName());
             }else {
-                if (damage == 0) {
-                    System.out.printf("%sの攻撃！,,,だが、%sは攻撃を回避した！\n", getName(), opponent.getName());
+                if(val <= 3){
+                    int wdamage = damage * 2;
+                    System.out.printf("%sの攻撃！会心の一撃！！%sに%dのダメージを与えた！！\n", getName(), opponent.getName(), wdamage);
+                    opponent.wounded(wdamage);
                 }else {
                     System.out.printf("%sの攻撃！%sに%dのダメージを与えた！！\n", getName(), opponent.getName(), damage);
+                    opponent.wounded(damage);
                 }
-                opponent.wounded(damage);
             }
         }
     }
